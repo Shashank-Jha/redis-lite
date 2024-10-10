@@ -25,4 +25,16 @@ public class KeyValueStore {
     public String get(String key) {
         return store.get(key);
     }
+
+    public boolean delete(String key){
+        return store.remove(key) != null;
+    }
+
+    public boolean exists(String key){
+        return store.containsKey(key);
+    }
+
+    public void flushAll(){
+        store.clear();
+    }
 }

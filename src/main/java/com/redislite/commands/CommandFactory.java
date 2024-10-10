@@ -8,6 +8,16 @@ public class CommandFactory {
                 return new SetCommand();
             case "GET":
                 return new GetCommand();
+            case "DEL":
+                return new DeleteCommand();
+            case "EXISTS":
+                return new ExistsCommand();
+            case "INCR":
+                return new IncrCommand();
+            case "INCRBY":
+                return new IncrByCommand();
+            case "FLUSHALL":
+                return new FlushAllCommand();
             default:
                 return new Command() {
                     @Override

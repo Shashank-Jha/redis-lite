@@ -20,3 +20,10 @@ It is intended for learning purposes and does **not** aim to replicate Redis's f
 - RESP (Redis Serialization Protocol) parser for command handling.
 - Built with pure Java for learning purpose.
 
+#
+## Compile and Run: 
+
+- Compile the Project : `javac -d out -sourcepath ./src/main/java ./src/main/java/com/redislite/Redis.java`
+- Get it running : `java -cp out com.redislite.Redis`
+
+![alt text](image.png)
