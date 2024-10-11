@@ -1,32 +1,39 @@
 package com.redislite.utils;
 
-import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.IOException;
 
 public class RESPParser {
 
     public String[] parse(BufferedReader reader) throws IOException {
+        
         String inputLine = reader.readLine();
         System.out.println("input is :: "+inputLine);
+
+        // Check for RESP array
         if (inputLine.startsWith("*")) {
-            // Number of arguments
             int argCount = Integer.parseInt(inputLine.substring(1));
             String[] tokens = new String[argCount];
 
             for (int i = 0; i < argCount; i++) {
-                // Read the line that gives the length of the bulk string
                 String lengthLine = reader.readLine();
-                if (!lengthLine.startsWith("$")) {
-                    throw new IOException("Expected bulk string length indicator");
+
+                // Handle bulk strings (prefixed by $)
+                if (lengthLine.startsWith("$")) {
+                    int length = Integer.parseInt(lengthLine.substring(1));
+                    char[] value = new char[length];
+                    reader.read(value, 0, length);
+                    reader.readLine(); // Consume CRLF after the bulk string
+                    tokens[i] = new String(value);
+                } 
+                // Handle integers (prefixed by :)
+                else if (lengthLine.startsWith(":")) {
+                    tokens[i] = lengthLine.substring(1); // Extract integer as string
+                } 
+                // Throw an error for unsupported types
+                else {
+                    throw new IOException("Unexpected RESP format");
                 }
-
-                // Read the actual bulk string value
-                int length = Integer.parseInt(lengthLine.substring(1));
-                char[] value = new char[length];
-                reader.read(value, 0, length);  // Read the bulk string
-                reader.readLine(); // Consume the CRLF after the bulk string
-
-                tokens[i] = new String(value);
             }
 
             return tokens;
