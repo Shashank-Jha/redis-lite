@@ -1,4 +1,4 @@
-# RedisLite - A Work-in-Progress Simple Redis Clone
+# RedisLite - A Simple Redis Clone
 
 `RedisLite` is a basic implementation of simple, lightweight in-memory key-value store built in `Java`, inspired by Redis. The purpose of this project is to understand how Redis works and how basic commands are implemented. It currently supports a subset of Redis commands and is designed for learning purposes.
 
