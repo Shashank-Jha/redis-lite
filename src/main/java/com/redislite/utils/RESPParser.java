@@ -8,7 +8,6 @@ public class RESPParser {
     public String[] parse(BufferedReader reader) throws IOException {
         
         String inputLine = reader.readLine();
-        System.out.println("input is :: "+inputLine);
 
         // Check for RESP array
         if (inputLine.startsWith("*")) {

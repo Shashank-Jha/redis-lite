@@ -17,7 +17,7 @@ public class IncrByCommand implements Command {
             int intValue = Integer.parseInt(value);
             intValue += increment;
             KeyValueStore.getInstance().set(key, Integer.toString(intValue));
-            return "(integer) " + intValue + "\r\n";
+            return ":" + intValue + "\r\n";
         } catch (NumberFormatException e) {
             return "-ERR value is not an integer\r\n";
         }

@@ -10,6 +10,6 @@ public class ExistsCommand implements Command {
         }
         
         String key = args[1];
-        return KeyValueStore.getInstance().exists(key) ? "(integer) 1\r\n" : "(integer) 0\r\n";
+        return KeyValueStore.getInstance().exists(key) ? ":1\r\n" : ":0\r\n";
     }
 }

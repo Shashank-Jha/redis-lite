@@ -11,9 +11,9 @@ public class DeleteCommand implements Command {
         
         String key = args[1];
         if (KeyValueStore.getInstance().delete(key)) {
-            return "(integer) 1\r\n";
+            return ":1\r\n";
         } else {
-            return "(integer) 0\r\n";
+            return ":0\r\n";
         }
     }
 }
